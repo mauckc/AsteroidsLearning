@@ -520,9 +520,9 @@ window.onload = function(){
 		Neuvol = new Neuroevolution({
 			population:64,
 			network:[nbSensors, [9], 2],
-			randomBehaviour:0.15,
-			mutationRate:0.25, 
-			mutationRange:0.35, 
+			randomBehaviour:0.05,
+			mutationRate:0.05, 
+			mutationRange:0.2, 
 		});
 		game = new Game();
 		game.start();
