@@ -1,4 +1,4 @@
-# Asteroids Learning ([Demo](https://xviniette.github.io/AsteroidsLearning/))
+# Asteroids Learning ([Demo](https://mauckc.github.io/AsteroidsLearning/))
 
 Program that learns to avoid Asteroids by machine learning. The operation is almost the same as [Flappy Learning](https://github.com/xviniette/FlappyLearning) with 16 sensors of distance all around the ship.
 
