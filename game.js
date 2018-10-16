@@ -4,7 +4,7 @@ var game;
 var FPS = 60;
 
 var nbSensors = 16;
-var maxSensorSize = 256;
+var maxSensorSize = 200;
 
 var images = {};
 
@@ -338,6 +338,8 @@ var Game = function(){
 
 	this.alives = 0;
 	this.generation = 0;
+  this.lastscore = 0;
+  this.highscore = 0;
 }
 
 // Start the game
@@ -395,6 +397,9 @@ Game.prototype.update = function(){
 			}
 
 		}
+    if (this.score > this.lastscore) {
+      this.lastscore = this.score;
+    }
 	}
   // Update each Enemy
 	for(var i in this.enemies){
@@ -470,10 +475,10 @@ Game.prototype.display = function(){
 			// 	var y1 = this.snakes[i].y + this.snakes[i].height/2;
 			// 	var x2 = x1 + Math.cos(Math.PI * 2 / nbSensors * j + this.snakes[i].direction) * maxSensorSize;
 			// 	var y2 = y1 + Math.sin(Math.PI * 2 / nbSensors * j + this.snakes[i].direction) * maxSensorSize;
-			// 	// this.ctx.beginPath();
-			// 	// this.ctx.moveTo(x1, y1);
-			// 	// this.ctx.lineTo(x2, y2);
-			// 	// this.ctx.stroke();
+			// 	this.ctx.beginPath();
+			// 	this.ctx.moveTo(x1, y1);
+			// 	this.ctx.lineTo(x2, y2);
+			// 	this.ctx.stroke();
 			// }
       // Draw bound boxes around the ships
 			// this.ctx.strokeStyle = "red";
@@ -507,6 +512,7 @@ Game.prototype.display = function(){
 	this.ctx.fillText("Score : "+this.score, 10, 25);
 	this.ctx.fillText("Generation : "+this.generation, 10, 50);
 	this.ctx.fillText("Alive : "+this.alives+" / "+Neuvol.options.population, 10, 75);
+	this.ctx.fillText("High Score : "+this.lastscore, 10, 100);
 }
 
 window.onload = function(){
@@ -515,14 +521,14 @@ window.onload = function(){
 		asteroid:"img/asteroid.png",
 		background:"img/fond.png"
 	};
-
+// 
 	var start = function(){
 		Neuvol = new Neuroevolution({
-			population:64,
+			population:128,
 			network:[nbSensors, [9], 2],
-			randomBehaviour:0.05,
-			mutationRate:0.05, 
-			mutationRange:0.2, 
+			randomBehaviour:0.1,
+			mutationRate:0.1, 
+			mutationRange:0.1, 
 		});
 		game = new Game();
 		game.start();
